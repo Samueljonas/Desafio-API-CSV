@@ -9,17 +9,17 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.stdout.write(self.style.SUCCESS('Iniciando a população de dados da API do IBGE...'))
 
-        # Adicionar uma função auxiliar para lidar com as requisições
+       
         def make_request_with_retry(url, retries=5, timeout=30):
             for i in range(retries):
                 try:
                     response = requests.get(url, timeout=timeout)
-                    response.raise_for_status() # Lança um erro se a resposta for um status de erro HTTP
+                    response.raise_for_status()
                     return response.json()
                 except (requests.exceptions.RequestException) as e:
                     self.stdout.write(self.style.WARNING(f"Erro na requisição ({url}): {e}"))
                     if i < retries - 1:
-                        wait_time = 2 ** i # Espera exponencial
+                        wait_time = 2 ** i 
                         self.stdout.write(f"Tentando novamente em {wait_time} segundos...")
                         time.sleep(wait_time)
                     else:
