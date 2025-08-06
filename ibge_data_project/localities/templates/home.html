@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home Page</title>
-  </head>
-  <body>
-    <h1>Navegação</h1>
-    <ul>
-      <li><a href="{%url 'state_list' %}"> Listagem de Estados</a></li>
-      <li><a href="{%url 'city_list' %}">Listagem de Cidades</a></li>
-      <li><a href="{%url 'district_list' %}">Listagem de Distritos</a></li>
-      <li><a href="{%url 'company_list'%}">Listagem de Empresas</a></li>
-    </ul>
-  </body>
-</html>
+{% extends 'base.html' %}{% block content %}
+<h1 class="main-heading mb-4">Navegação do Projeto</h1>
+<ul class="list-group">
+  <li class="list-group-item">
+    <a href="{% url 'state_list' %}">Listagem de Estados</a>
+  </li>
+  <li class="list-group-item">
+    <a href="{% url 'city_list' %}">Listagem de Municípios</a>
+  </li>
+  <li class="list-group-item">
+    <a href="{% url 'district_list' %}">Listagem de Distritos</a>
+  </li>
+  <li class="list-group-item">
+    <a href="{% url 'company_list' %}">Listagem de Empresas</a>
+  </li>
+</ul>
+{% endblock %} s
