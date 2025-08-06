@@ -33,17 +33,24 @@ def city_list(request):
 def district_list(request):
     districts = District.objects.all()
 
-    #filter
-    city_id = request.GET.get('city_id')
-    if city_id:
-        district = districts.filter(city__ibge_id = city_id)
-    
-    #paginate
-    paginator = Paginator(district, 100) #100 for page
-    page_number = requeset.GET.get('page')
+    # filter
+    state_id = request.GET.get('state_id')
+    if state_id:
+        districts = districts.filter(city__state__ibge_id=state_id)
+    # paginate
+    paginator = Paginator(districts, 100)
+    page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'district_list.html', {'page_obj': page_obj, 'cities': City.objects.all()})
+    # Passa todos os estados para o template, para o formulário de filtro
+    states = State.objects.order_by('name')
+
+    return render(request, 'district_list.html', {
+        'page_obj': page_obj,
+        'states': states, # Agora passamos a lista de estados
+        'selected_state_id': state_id # Para manter o estado selecionado no filtro
+    })
+
 def company_list(request):
     companies = Empresa.objects.all()
 
