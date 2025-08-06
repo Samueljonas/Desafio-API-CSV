@@ -1,0 +1,19 @@
+body {
+  background-color: #f8f9fa;
+}
+
+.main-heading {
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+}
+
+.list-group-item a {
+  color: #333;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.list-group-item:hover {
+  background-color: #e9ecef;
+}
