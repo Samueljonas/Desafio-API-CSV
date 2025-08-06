@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listagem de Estados</title>
+  </head>
+  <body>
+    <h1>Listagem de Estados</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>ID_IBGE</th>
+          <th>Nome</th>
+          <th>UF</th>
+          <th>Região</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for state in page_obj%}
+        <tr>
+          <td>{{ state.ibge_id}}</td>
+          <td>
+            <a href="{% url 'city_list' %}?state_id={{ state_ibge_id}}"
+              >{{ state.name }}</a
+            >
+          </td>
+          <td>{{state.uf}}</td>
+          <td>{{state.region.name}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="pagination">
+      <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; primeira</a>
+        <a href="?page={{page_obj.previous_page_number}}">anterior</a>
+        {% endif %}
+        <span class="current">
+          Página {{ page_obj.number}} de {{page_obj.paginator.num_pages}}
+        </span>
+        {% if pages_obj.has_next%}
+        <a href="?page={{page_obj.next_page_number}}">próxima</a>
+        <a href="?page={{ page_obj.paginator.num_pages}}">última &raquo;</a>
+        {%endif%}
+      </span>
+    </div>
+    <a href="{%url 'home' %}">Voltar para a home</a>
+  </body>
+</html>
