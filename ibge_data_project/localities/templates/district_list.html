@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Listagem de Distritos</title>
+</head>
+<body>
+    <h1>Listagem de Distritos</h1>
+    
+    <form method="get">
+        <label for="state_id">Filtrar por Estado:</label>
+        <select name="state_id" id="state_id">
+            <option value="">-- Todos --</option>
+            {% for state in states %}
+                <option value="{{ state.ibge_id }}" {% if state.ibge_id|stringformat:"i" == selected_state_id %}selected{% endif %}>
+                    {{ state.name }} ({{ state.uf }})
+                </option>
+            {% endfor %}
+        </select>
+        <button type="submit">Filtrar</button>
+    </form>
+    <br>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID IBGE </th>
+                <th>Nome do distrito</th>
+                <th>Município</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for district in page_obj %}
+            <tr>
+                <td>{{ district.ibge_id }}</td>
+                <td>{{ district.name }}</td>
+                <td>{{ district.city.name }}</td>
+                <td>{{ district.city.state.name }} ({{ district.city.state.uf }})</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1&state_id={{ selected_state_id }}">&laquo; primeira</a>
+                <a href="?page={{ page_obj.previous_page_number }}&state_id={{ selected_state_id }}">anterior</a>
+            {% endif %}
+
+            <span class="current">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}&state_id={{ selected_state_id }}">próxima</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}&state_id={{ selected_state_id }}">última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    
+    <a href="{% url 'home' %}">Voltar para a home</a>
+</body>
+</html>
