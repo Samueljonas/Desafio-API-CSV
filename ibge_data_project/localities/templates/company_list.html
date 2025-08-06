@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Listagem de Empresas</title>
+  </head>
+  <body>
+    <h1>Listagem de Empresas</h1>
+
+    <form method="get">
+      <label for="cnpj">Filtrar por CNPJ Básico:</label>
+      <input
+        type="text"
+        name="cnpj"
+        id="cnpj"
+        value="{{ cnpj_search|default:'' }}"
+      />
+      <button type="submit">Buscar</button>
+    </form>
+    <br />
+
+    <table border="1">
+      <thead>
+        <tr>
+          <th>CNPJ Básico</th>
+          <th>Razão Social</th>
+          <th>Natureza Jurídica</th>
+          <th>Porte da Empresa</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for company in page_obj %}
+        <tr>
+          <td>{{ company.cnpj_basico }}</td>
+          <td>{{ company.razao_social }}</td>
+          <td>{{ company.natureza_juridica }}</td>
+          <td>{{ company.porte_empresa }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="pagination">
+      <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?page=1&cnpj={{ cnpj_search }}">&laquo; primeira</a>
+        <a
+          href="?page={{ page_obj.previous_page_number }}&cnpj={{ cnpj_search }}"
+          >anterior</a
+        >
+        {% endif %}
+
+        <span class="current">
+          Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}&cnpj={{ cnpj_search }}"
+          >próxima</a
+        >
+        <a
+          href="?page={{ page_obj.paginator.num_pages }}&cnpj={{ cnpj_search }}"
+          >última &raquo;</a
+        >
+        {% endif %}
+      </span>
+    </div>
+
+    <a href="{% url 'home' %}">Voltar para a home</a>
+  </body>
+</html>
