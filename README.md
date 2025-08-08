@@ -26,6 +26,7 @@ As instruções a seguir detalham o processo para clonar e executar o projeto em
 2.  Crie e ative um ambiente virtual para isolar as dependências do projeto:
 
     ```
+    cd ibge_data_project
     python -m venv venv
     source venv/bin/activate
     ```
@@ -35,6 +36,14 @@ As instruções a seguir detalham o processo para clonar e executar o projeto em
     ```
     pip install -r requirements.txt
     ```
+
+
+4.  Inicie o servidor
+
+    ```
+    python manage.py runserver
+    ```
+
 
 ### 2\. Configuração do Ambiente
 
