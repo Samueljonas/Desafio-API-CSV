@@ -3,13 +3,7 @@
 
 Este projeto consiste em uma aplicação web desenvolvida com o framework Django. O objetivo principal é demonstrar a capacidade de integrar dados de fontes externas — especificamente, uma API pública do IBGE e um arquivo CSV da Receita Federal — e persistir essas informações em um banco de dados relacional. Posteriormente, os dados são apresentados em uma interface web com funcionalidades de navegação, filtragem e paginação para uma visualização organizada.
 
-### Tabela de Conteúdo
 
-1.  [Instalação e Execução Local](https://www.google.com/search?q=%231-instala%C3%A7%C3%A3o-e-execu%C3%A7%C3%A3o-local)
-2.  [Configuração do Ambiente](https://www.google.com/search?q=%232-configura%C3%A7%C3%A3o-do-ambiente)
-3.  [Importação dos Dados](https://www.google.com/search?q=%233-importa%C3%A7%C3%A3o-dos-dados)
-4.  [Acessando a Aplicação Web](https://www.google.com/search?q=%234-acessando-a-aplica%C3%A7%C3%A3o-web)
-5.  [Funcionalidades](https://www.google.com/search?q=%235-funcionalidades)
 
 ### 1\. Instalação e Execução Local
 
