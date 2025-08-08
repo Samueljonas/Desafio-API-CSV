@@ -41,7 +41,7 @@ def district_list(request):
     if state_id:
         districts = districts.filter(city__state__ibge_id=state_id)
         
-    # Paginação
+    # paginate
     paginator = Paginator(districts, 100)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -61,7 +61,7 @@ def company_list(request):
     #filter
     cnpj_search = request.GET.get('cnpj')
     if cnpj_search:
-        companies = companies.filter(cnpj_basico__incontains=cnpj_search)
+        companies = companies.filter(cnpj_basico__icontains=cnpj_search)
 
     #paginate
     paginator = Paginator(companies, 25) #25 companies for page
